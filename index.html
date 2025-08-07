@@ -8,10 +8,6 @@
     <!-- Leaflet.js (地図ライブラリ) のスタイルシート -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
     
-    <!-- Leaflet.markercluster (マーカークラスタリング) のスタイルシート -->
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-    <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-
     <!-- Font Awesome (アイコン) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
@@ -402,9 +398,6 @@
     <!-- Leaflet.js のスクリプト -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     
-    <!-- Leaflet.markercluster のスクリプト -->
-    <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-    
     <!-- アプリケーションのロジック -->
     <script type="module">
         const onsenData = [
@@ -601,7 +594,7 @@
         function setupDesktopView() {
             map = L.map('map').setView([36.2, 139.8], 8);
             setupCommonMapFeatures(map);
-            markers = L.markerClusterGroup().addTo(map);
+            markers = L.layerGroup().addTo(map);
             generatePrefectureFilters('desktop');
             setupEventListeners('desktop');
         }
@@ -609,7 +602,7 @@
         function setupMobileView() {
             mobileMap = L.map('mobile-map').setView([36.2, 139.8], 8);
             setupCommonMapFeatures(mobileMap);
-            mobileMarkers = L.markerClusterGroup().addTo(mobileMap);
+            mobileMarkers = L.layerGroup().addTo(mobileMap);
             
             const desktopFiltersHtml = document.getElementById('desktop-filters').innerHTML;
             const mobileSearchPanel = document.getElementById('mobile-search-panel');
@@ -745,7 +738,6 @@
                 addToList(onsen, currentMap, currentMarkerLayer, listContainer);
             });
             
-            currentMap.addLayer(currentMarkerLayer);
             updateStats(filteredData);
         }
 
@@ -889,3 +881,4 @@
     </script>
 </body>
 </html>
+
